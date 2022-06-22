@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chat Rooms</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chat/pure-min.css' %}">
+    <style>
+    form {
+        padding: 1em;
+    }
+    </style>
+</head>
+<body>
+
+<form class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>Chat Room Name</legend>
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <label for="room-name-input">Room Name</label>
+                <input id="room-name-input" type="text">
+            </div>
+            <button id="room-name-submit" type="submit" class="pure-button pure-button-primary">Join</button>
+        </div>
+    </fieldset>
+</form>
+
+<script>
+    document.querySelector("#room-name-input").focus();
+    document.querySelector("#room-name-input").onkeyup = function(e) {
+        if (e.keyCode == 13)
+            document.querySelector("#room-name-submit").click();
+    }
+    document.querySelector("#room-name-submit").onclick = function(e) {
+        e.preventDefault();
+        var roomName = document.querySelector('#room-name-input').value;
+        window.location.pathname = '/chat/' + roomName + '/';
+    }
+</script>
+</body>
+</html>
